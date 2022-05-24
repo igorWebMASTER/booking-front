@@ -14,7 +14,7 @@ export default createGlobalStyle`
     */
     html, body {
     height: 100%;
-    font-family: 'MontSerat', Courier, monospace;
+    font-family: 'Montserrat', sans-serif;
     }
     /*
     Typographic tweaks!

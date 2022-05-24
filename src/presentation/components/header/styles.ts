@@ -28,7 +28,8 @@ export const HeaderListItem = styled.div<{ active?: boolean }>`
     ${({ active }) => active && css`
         border: 1px solid white;
         padding:10px; 
-        border-radius: 12px;
+        background: rgba(0,113,194,.06);
+        border-radius: 25px;
     `} 
 `
 
@@ -37,13 +38,13 @@ export const HeaderContent = styled.div`
 `
 
 export const HeaderTitle = styled.h1`
-    font-size: 24px;
+    font-size: 2.4rem;
     font-weight: bold;
-    text-transform: uppercase;
 `
 
 export const HeaderSubtitle = styled.h3`
-    font-size: 16px;
+    font-size: 22px;
+    font-weight: 400;
     margin: 1.2rem 0;
 `
 
@@ -86,6 +87,7 @@ export const HeaderSearch = styled.div`
 export const HeaderSearchItem =  styled.div`
     display: flex;
     align-items: center;
+    
     gap:1rem;
 `
 

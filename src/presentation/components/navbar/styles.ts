@@ -44,6 +44,8 @@ export const Button = styled.button`
     height: 40px;
     background-color: white;
     border:0;
+    display: table-cell;
+    padding-left: 4px;
     cursor: pointer;
     color: white;
     background-color: #003580;

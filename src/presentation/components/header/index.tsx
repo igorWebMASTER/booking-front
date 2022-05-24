@@ -6,13 +6,13 @@ import { Button } from '../navbar/styles'
 import { RangeKeyDict } from 'react-date-range';
 import { format } from 'date-fns'
 import DateRange from './components/DateRange'
-
+import { Featured } from '../featured'
 
 export function Header() {
   const [openDate, setOpenDate] = useState(false)
   const [openOptions, setOpenOptions] = useState(false)
-  const [options, setOptions] = useState<any>({
-    adult: 1,
+  const [options, setOptions] = useState<{ [key: string]: any }>({
+    adult: 0,
     children: 0,
     room: 0,
   })
@@ -46,15 +46,15 @@ export function Header() {
         <S.HeaderList>
           <S.HeaderListItem active>
             <FontAwesomeIcon icon={faBed} />
-            <span>Stays</span>
+            <span>Hospedagens</span>
           </S.HeaderListItem>
           <S.HeaderListItem>
             <FontAwesomeIcon icon={faPlane} />
-            <span>Flights</span>
+            <span>Voos</span>
           </S.HeaderListItem>
           <S.HeaderListItem>
             <FontAwesomeIcon icon={faCar} />
-            <span>Car rentals</span>
+            <span>Aluguel de carros</span>
           </S.HeaderListItem>
           <S.HeaderListItem>
             <FontAwesomeIcon icon={faCar} />
@@ -62,18 +62,18 @@ export function Header() {
           </S.HeaderListItem>
           <S.HeaderListItem>
             <FontAwesomeIcon icon={faCar} />
-            <span>Táxis aeroportos</span>
+            <span>Táxis (aeroporto)</span>
           </S.HeaderListItem>
         </S.HeaderList>
         <S.HeaderContent>
           <S.HeaderTitle>
-            A life of discounts? It's Genius
+            Descontos vitalícios? Apenas com o Genius!
           </S.HeaderTitle>
           <S.HeaderSubtitle>
-            Get rewarded for your travels - unlock instant savings of 10% or more with a free Lamabooking account
+            Receba recompensas pelas suas viagens – tenha descontos imediatos de 10% ou mais com uma conta Booking.com gratuita
           </S.HeaderSubtitle>
           <S.HeaderButton>
-            <span>CADASTRAR</span>
+            <span>Iniciar sessão/Registrar</span>
           </S.HeaderButton>
         </S.HeaderContent>
         <S.HeaderSearch>
@@ -86,10 +86,10 @@ export function Header() {
             <S.Span>{`${format(daySelected?.startDate, 'MM/dd/yyyy')} para ${format(daySelected.startDate, 'MM/dd/yyyy}')}`}</S.Span>
             {openDate && <DateRange onChange={handleSelect} />}
           </S.HeaderSearchItem>
-          <S.HeaderSearchItem>
+          <S.HeaderSearchItem >
             <FontAwesomeIcon icon={faPerson} className="headerIcon" />
-            <S.Span>{options?.adult} adults {options?.children} children {options?.room} room</S.Span>
-            <S.Option>
+            <S.Span onClick={() => setOpenOptions(!openOptions)}>{options?.adult} adults {options?.children} children {options?.room} room</S.Span>
+            {openOptions && (<S.Option>
               <S.OptionItem>
                 <S.SpanOptionItem>Adult</S.SpanOptionItem>
                 <S.OptionCounter>
@@ -110,7 +110,6 @@ export function Header() {
                   >-</S.OptionCounterButton>
                   <S.OptionCounterNumber>{options?.children}</S.OptionCounterNumber>
                   <S.OptionCounterButton
-                    disabled={options?.children <= 0}
                     onClick={() => handleOption("children", "add")}>+</S.OptionCounterButton>
                 </S.OptionCounter>
               </S.OptionItem>
@@ -119,14 +118,13 @@ export function Header() {
                 <S.OptionCounter>
                   <S.OptionCounterButton
                     disabled={options?.room <= 0}
-                    onClick={() => handleOption("room", "increment")}>-</S.OptionCounterButton>
+                    onClick={() => handleOption("room", "decrement")}>-</S.OptionCounterButton>
                   <S.OptionCounterNumber>{options?.room}</S.OptionCounterNumber>
                   <S.OptionCounterButton
-                    disabled={options?.room <= 0}
                     onClick={() => handleOption("room", "add")} >+</S.OptionCounterButton>
                 </S.OptionCounter>
               </S.OptionItem>
-            </S.Option>
+            </S.Option>)}
           </S.HeaderSearchItem>
           <S.HeaderSearchItem>
             <Button>
